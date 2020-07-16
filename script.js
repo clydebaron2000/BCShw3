@@ -41,25 +41,54 @@ function generatePassword() {
 
     //code generating block
     var out = "";
-    for (i = 0; i < len; i++) { //for each character in the password
-        var append = '';
-        switch (choices[Math.floor(Math.random() * choices.length)]) { //choose from the options the user specified
-            case 0:
-                append = LOWER[Math.floor(Math.random() * LOWER.length)]; //add a random character from the choice specified
-                break;
-            case 1:
-                append = UPPER[Math.floor(Math.random() * UPPER.length)];
-                break;
-            case 2:
-                append = SPECIAL[Math.floor(Math.random() * SPECIAL.length)];
-                break;
-            case 3:
-                append = NUM[Math.floor(Math.random() * NUM.length)];
-                break;
+    do {
+        out = "";
+        for (i = 0; i < len; i++) { //for each character in the password
+            var append = '';
+            switch (choices[Math.floor(Math.random() * choices.length)]) { //choose from the options the user specified
+                case 0:
+                    append = LOWER[Math.floor(Math.random() * LOWER.length)]; //add a random character from the choice specified
+                    break;
+                case 1:
+                    append = UPPER[Math.floor(Math.random() * UPPER.length)];
+                    break;
+                case 2:
+                    append = SPECIAL[Math.floor(Math.random() * SPECIAL.length)];
+                    break;
+                case 3:
+                    append = NUM[Math.floor(Math.random() * NUM.length)];
+                    break;
+            }
+            out = out.concat(append); //append to output
         }
-        out = out.concat(append); //append to output
-    }
+    } while (passIsValid(len, out, lowerB, upperB, numB, specB));
     return out;
+}
+
+function passIsValid(length, password, lowerB, upperB, numB, specB) {
+    if (password.length !== length) return false;
+    //if we get here, password.length===length
+    var l, u, n, s = 0;
+    for (i = 0; i < length; i++) {
+        if (lowerB)
+            if (LOWER.includes(password[i]))
+                l++;
+        if (upperB)
+            if (UPPER.includes(password[i]))
+                u++;
+        if (numB)
+            if (NUM.includes(password[i]))
+                n++;
+        if (specB)
+            if (SPECIAL.includes(password[i]))
+                s++;
+    }
+    //loop checker
+    if (l + u + n + s !== length) return false;
+    //at least one of each checker
+    if (l * u * n * s === 0) return false;
+    //if all pass, then return true!
+    return true;
 }
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
