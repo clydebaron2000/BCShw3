@@ -27,3 +27,7 @@ Click the link to view the full project via Github Pages.
 ## Acknowledgments
 
 * UCSD Full Stack Bootcamp for the assignment
+
+## License
+
+[GNU](https://choosealicense.com/licenses/gpl-3.0/)
