@@ -10,17 +10,15 @@ https://clydebaron2000.github.io/BCShw3/
 
 Click the link to view the full project via Github Pages.
 
-## Webpage Preview:
-### Desktop View:
+## Project Preview
 
-<img src="assets/images/About.PNG"  width="200px"/>
-<img src="assets/images/Portfolio.PNG" width="200px"/>
-<img src="assets/images/Contact.PNG" width="200px"/>
-
-### Mobile View:
-<img src="assets/images/Aboutmobile.PNG" height="100px"/>
-<img src="assets/images/Portfoliomobile.PNG" height="100px"/>
-<img src="assets/images/Contactmobile.PNG" height="100px"/>
+<img src="Assets/mainpage.PNG"  width="200px"/>
+<img src="Assets/length.PNG"  width="200px"/>
+<img src="Assets/lower.PNG"  width="200px"/>
+<img src="Assets/upper.PNG"  width="200px"/>
+<img src="Assets/num.PNG"  width="200px"/>
+<img src="Assets/spec.PNG"  width="200px"/>
+<img src="Assets/final.PNG"  width="200px"/>
 
 ## Author
 
