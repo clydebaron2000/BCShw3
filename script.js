@@ -70,18 +70,10 @@ function passIsValid(length, password, lowerB, upperB, numB, specB) {
     //if we get here, password.length===length
     var l, u, n, s = 0;
     for (i = 0; i < length; i++) {
-        if (lowerB)
-            if (LOWER.includes(password[i]))
-                l++;
-        if (upperB)
-            if (UPPER.includes(password[i]))
-                u++;
-        if (numB)
-            if (NUM.includes(password[i]))
-                n++;
-        if (specB)
-            if (SPECIAL.includes(password[i]))
-                s++;
+        if (lowerB && LOWER.includes(password[i])) l++;
+        if (upperB && UPPER.includes(password[i])) u++;
+        if (numB && NUM.includes(password[i])) n++;
+        if (specB && SPECIAL.includes(password[i])) s++;
     }
     //at least one of each option!
     if (l * u * n * s === 0) return false;
