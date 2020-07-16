@@ -40,8 +40,8 @@ function generatePassword() {
     if (specB) choices.push(3);
 
     //code generating block
-    var out = "";
-    do {
+    var out;
+    do { //while password is not valid
         out = "";
         for (i = 0; i < len; i++) { //for each character in the password
             var append = '';
@@ -61,7 +61,7 @@ function generatePassword() {
             }
             out = out.concat(append); //append to output
         }
-    } while (passIsValid(len, out, lowerB, upperB, numB, specB));
+    } while (!passIsValid(len, out, lowerB, upperB, numB, specB));
     return out;
 }
 
@@ -83,9 +83,7 @@ function passIsValid(length, password, lowerB, upperB, numB, specB) {
             if (SPECIAL.includes(password[i]))
                 s++;
     }
-    //loop checker
-    if (l + u + n + s !== length) return false;
-    //at least one of each checker
+    //at least one of each option!
     if (l * u * n * s === 0) return false;
     //if all pass, then return true!
     return true;
