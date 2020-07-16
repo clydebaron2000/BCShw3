@@ -1,9 +1,9 @@
 // Assignment Code
 //"Global variables"
-var LOWER = "qwertyuioplkjhgfdsazxcvbnm";
-var UPPER = "QWERTYUIOPLKKJHGFDSAZXCVBNM";
-var SPECIAL = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-var NUM = "1234567890";
+var LOWARR = "qwertyuioplkjhgfdsazxcvbnm";
+var UPPARR = "QWERTYUIOPLKKJHGFDSAZXCVBNM";
+var SPEARR = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+var NUMARR = "1234567890";
 
 var generateBtn = document.querySelector("#generate");
 
@@ -13,67 +13,72 @@ function writePassword() {
     var passwordText = document.querySelector("#password");
     passwordText.value = password;
 }
-
+//generate a password
 function generatePassword() {
-    var len = 0;
+    var pLength = 0;
     // choose length block
-    while (isNaN(len) || len < 8 || len > 128)
-        len = parseInt(prompt("Choose a length of your password (8-128 characters)."));
+    while (isNaN(pLength) || pLength < 8 || pLength > 128)
+        pLength = parseInt(prompt("Choose a length of your password (8-128 characters)."));
 
     //specifications block
-    var lowerB, upperB, numB, specB = false; // 'B' stands for boolean
-    while (!lowerB && !upperB && !numB && !specB) { //as long as none were chosen
-        lowerB = confirm("Do you want lowercase characters in your password?");
-        upperB = confirm("Do you want uppercase characters in your password?");
+    var lowB, uppB, numB, speB = false; // 'B' stands for boolean
+    while (!lowB && !uppB && !numB && !speB) { //as long as none were chosen
+        lowB = confirm("Do you want lowercase characters in your password?");
+        uppB = confirm("Do you want uppercase characters in your password?");
         numB = confirm("Do you want numeric characters in your password?");
-        specB = confirm("Do you want special characters in your password?");
+        speB = confirm("Do you want special characters in your password?");
         //if none were chosen, tell them
-        if (!lowerB && !upperB && !numB && !specB)
-            alert("You must choose at least one of the following for your password: lowercase, uppercase, numeric, special.");
+        if (!lowB && !uppB && !numB && !speB)
+            alert("You must choose at least one of the following: lowercase, uppercase, numeric, special.");
     }
 
     //set chooser block
-    var choices = [];
-    if (lowerB) choices.push(0);
-    if (upperB) choices.push(1);
-    if (numB) choices.push(2);
-    if (specB) choices.push(3);
+    var uChoices = [];
+    if (lowB) uChoices.push(0); //lower
+    if (uppB) uChoices.push(1); //upper
+    if (numB) uChoices.push(2); //num
+    if (speB) uChoices.push(3); //spec
 
     //code generating block
-    var out;
-    do { //while password is not valid
-        out = "";
-        for (i = 0; i < len; i++) { //for each character in the password
-            var append = '';
-            switch (choices[Math.floor(Math.random() * choices.length)]) { //choose from the options the user specified
-                case 0:
-                    append = LOWER[Math.floor(Math.random() * LOWER.length)]; //add a random character from the choice specified
+    var output;
+    do { //while password is not valid, run at least once
+        output = ""; //set output to a string of nothing
+        for (i = 0; i < pLength; i++) { //for each character in the password
+            var append = ''; //is only one character
+            switch (uChoices[Math.floor(Math.random() * uChoices.length)]) { //random index from uChoices
+                case 0: //lower
+                    append = LOWARR[Math.floor(Math.random() * LOWARR.length)]; //random index of array
                     break;
-                case 1:
-                    append = UPPER[Math.floor(Math.random() * UPPER.length)];
+                case 1: //upper
+                    append = UPPARR[Math.floor(Math.random() * UPPARR.length)];
                     break;
-                case 2:
-                    append = SPECIAL[Math.floor(Math.random() * SPECIAL.length)];
+                case 2: //num
+                    append = SPEARR[Math.floor(Math.random() * SPEARR.length)];
                     break;
-                case 3:
-                    append = NUM[Math.floor(Math.random() * NUM.length)];
+                case 3: //spec
+                    append = NUMARR[Math.floor(Math.random() * NUMARR.length)];
                     break;
             }
-            out = out.concat(append); //append to output
+            output += append; //append to output
         }
-    } while (!passIsValid(len, out, lowerB, upperB, numB, specB));
-    return out;
-}
+    } while (!passIsValid(pLength, output, lowB, uppB, numB, speB));
 
-function passIsValid(length, password, lowerB, upperB, numB, specB) {
+    return output;
+}
+//sub function of generatePassword
+function passIsValid(length, password, lowB, uppB, numB, speB) {
+    //type checking block
+    if (isNaN(length) || typeof(password) !== "string" || typeof(lowB) !== "boolean" || typeof(uppB) !== "boolean" || typeof(numB) !== "boolean" || typeof(speB) !== "boolean")
+        return false;
+    //check length block
     if (password.length !== length) return false;
     //if we get here, password.length===length
     var l, u, n, s = 0;
     for (i = 0; i < length; i++) {
-        if (lowerB && LOWER.includes(password[i])) l++;
-        if (upperB && UPPER.includes(password[i])) u++;
-        if (numB && NUM.includes(password[i])) n++;
-        if (specB && SPECIAL.includes(password[i])) s++;
+        if (lowB && LOWARR.includes(password[i])) l++;
+        if (uppB && UPPARR.includes(password[i])) u++;
+        if (numB && NUMARR.includes(password[i])) n++;
+        if (speB && SPEARR.includes(password[i])) s++;
     }
     //at least one of each option!
     if (l * u * n * s === 0) return false;
