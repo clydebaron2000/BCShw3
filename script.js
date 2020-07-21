@@ -22,7 +22,7 @@ function generatePassword() {
 
     //specifications block
     var lowB, uppB, numB, speB; // 'B' stands for boolean, whne put through the while statement, runs as false
-    while (!lowB && !uppB && !numB && !speB) { //as long as none were chosen
+    while (!lowB && !uppB && !numB && !speB) { //as long as none were chosen, keep asking!
         lowB = confirm("Do you want lowercase characters in your password?");
         uppB = confirm("Do you want uppercase characters in your password?");
         numB = confirm("Do you want numeric characters in your password?");
@@ -74,7 +74,7 @@ function passIsValid(length, password, lowB, uppB, numB, speB) {
     if (password.length !== length) return false;
     //if we get here, password.length===length
     var l, u, n, s = 0;
-    for (i = 0; i < length; i++) {
+    for (i = 0; i < length; i++) { //count numbers of each type
         if (lowB && LOWARR.includes(password[i])) l++;
         if (uppB && UPPARR.includes(password[i])) u++;
         if (numB && NUMARR.includes(password[i])) n++;
