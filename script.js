@@ -73,7 +73,10 @@ function passIsValid(length, password, lowB, uppB, numB, speB) {
     //check length block
     if (password.length !== length) return false;
     //if we get here, password.length===length
-    var l, u, n, s = 0;
+    var l = 0,
+        u = 0,
+        n = 0,
+        s = 0; //set everything to 0
     for (i = 0; i < length; i++) { //count numbers of each type
         if (lowB && LOWARR.includes(password[i])) l++;
         if (uppB && UPPARR.includes(password[i])) u++;
@@ -81,8 +84,15 @@ function passIsValid(length, password, lowB, uppB, numB, speB) {
         if (speB && SPEARR.includes(password[i])) s++;
     }
     //at least one of each option!
-    if (l * u * n * s === 0) return false;
-    //if all pass, then return true!
+    if (lowB) //if true
+        if (l === 0) return false; //and still 0 false
+    if (uppB)
+        if (u === 0) return false;
+    if (numB)
+        if (n === 0) return false;
+    if (speB)
+        if (s === 0) return false;
+        //if all pass, then return true!
     return true;
 }
 // Add event listener to generate button
