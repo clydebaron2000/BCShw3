@@ -1,9 +1,9 @@
 // Assignment Code
 //"Global variables"
-var LOWARR = "qwertyuioplkjhgfdsazxcvbnm";
-var UPPARR = "QWERTYUIOPLKKJHGFDSAZXCVBNM";
-var SPEARR = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
-var NUMARR = "1234567890";
+const LOWARR = "qwertyuioplkjhgfdsazxcvbnm";
+const UPPARR = "QWERTYUIOPLKKJHGFDSAZXCVBNM";
+const SPEARR = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+const NUMARR = "1234567890";
 
 var generateBtn = document.querySelector("#generate");
 
@@ -21,7 +21,7 @@ function generatePassword() {
         pLength = parseInt(prompt("Choose a length of your password (8-128 characters)."));
 
     //specifications block
-    var lowB, uppB, numB, speB = false; // 'B' stands for boolean
+    var lowB, uppB, numB, speB; // 'B' stands for boolean, whne put through the while statement, runs as false
     while (!lowB && !uppB && !numB && !speB) { //as long as none were chosen
         lowB = confirm("Do you want lowercase characters in your password?");
         uppB = confirm("Do you want uppercase characters in your password?");
