@@ -2,7 +2,7 @@
 //"Global variables"
 const LOWARR = "qwertyuioplkjhgfdsazxcvbnm";
 const UPPARR = "QWERTYUIOPLKKJHGFDSAZXCVBNM";
-const SPEARR = " !\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
+const SPEARR = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 const NUMARR = "1234567890";
 
 var generateBtn = document.querySelector("#generate");
